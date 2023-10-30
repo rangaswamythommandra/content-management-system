@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Content Management  System/css/utils.css" />
+    <link rel="stylesheet" href="/Content Management  System/css/style.css" />
+    <link rel="stylesheet" href="/Content Management  System/css/mobile.css" />
+    <title>iBlog - Heaven for bloggers</title>
+    <style>
+        .home-article-img img {
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navigation max-width-1 m-auto">
+        <div class="nav-left">
+            <a href="/">
+                <span><img src="https://cdn-icons-png.flaticon.com/256/6578/6578914.png" width="94px" alt=""></span>
+            </a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <form id="searchForm" action="/search.html" method="get">
+                <input id="searchInput" class="form-input" type="text" name="query" placeholder="Article Search">
+                <button class="btn">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="max-width-1 m-auto"><hr></div>
+    <div class="home-articles max-width-1 m-auto font2">
+        <h2>Search Results for <span id="searchTerm">Django</span> (<span id="searchTime">0.03 seconds</span>)</h2>
+    </div>
+
+    <div class="home-article">
+        <div class="home-article-img">
+            <img src="https://news.thewindowsclub.com/wp-content/uploads/2020/05/Gates-Notes-Insider.jpg?ezimgfmt=ng:webp/ngcb205" alt="article">
+        </div>
+        <div class="home-article-content font1">
+            <a href="https://www.gatesnotes.com/" target="_blank">
+                <h3>Gates Notes</h3>
+            </a>
+            <div>Bill Gates</div>
+            <span>Various Dates | Ongoing</span>
+        </div>
+    </div>
+    
+    <div class="home-article">
+        <div class="home-article-img">
+            <img src="https://techcrunch.com/wp-content/uploads/2014/08/huffpost.jpg?w=1390&crop=1" alt="article">
+        </div>
+        <div class="home-article-content font1">
+            <a href="https://www.huffpost.com/" target="_blank">
+                <h3>The Huffington Post</h3>
+            </a>
+            <div>Jane Smith</div>
+            <span>Various Dates | Ongoing</span>
+        </div>
+    </div>
+    
+    <div class="home-article">
+        <div class="home-article-img">
+            <img src="https://images.currentaffairs.org/2018/02/nytimesopinion-600_9XMfCxK-1024x646.jpg" alt="article">
+        </div>
+        <div class="home-article-content font1">
+            <a href="https://www.nytimes.com/section/opinion" target="_blank">
+                <h3>The New York Times Opinion</h3>
+            </a>
+            <div>James Johnson</div>
+            <span>Various Dates | Ongoing</span>
+        </div>
+    </div>
+    
+    <!-- Repeat the same pattern for other image elements -->
+    
+    <script src="js/search.js"></script>
+
+    <div class="footer">
+        <p>Copyright &copy; iBlog.com</p>
+        <a href="https://www.vecteezy.com/free-vector/typewriter">Vector Credits: Vecteezy</a>
+    </div>
+</body>
+</html>

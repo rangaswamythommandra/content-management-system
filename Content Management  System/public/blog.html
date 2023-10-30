@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-top: 50px;
+        }
+        form {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input[type=text], textarea {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border-radius: 4px;
+            border: none;
+        }
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin-top: 20px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 4px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+        }
+        #output {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        #output img {
+            margin-top: 20px;
+            border-radius: 4px;
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+        #output p {
+            margin-top: 20px;
+            text-align: center;
+            color: #333;
+            font-size: 16px;
+        }
+        #output h2 {
+            margin-top: 50px;
+            text-align: center;
+            color: #4CAF50;
+            font-size: 24px;
+        }
+        .blog-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .blog-info p {
+            margin-bottom: -10px;
+        }
+        .blog-info span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h1>Write your blog here</h1>
+<form id="blog-form">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" placeholder="Enter title here..." required>
+
+    <label for="author">Author:</label>
+    <input type="text" id="author" name="author" placeholder="Enter author name here..." required>
+
+    <label for="publish-date">Publish Date:</label>
+    <input type="date" id="publish-date" name="publish-date" required>
+
+    <label for="content">Content:</label>
+    <textarea id="content" name="content" placeholder="Write your blog here..." required></textarea>
+
+    <label for="image">Image:</label>
+    <input type="file" id="image" name="image" accept="image/*">
+
+    <input type="submit" value="Submit">
+</form>
+
+<div id="output"></div>
+
+<script>
+    const form = document.querySelector('#blog-form');
+    const title = document.querySelector('#title');
+    const author = document.querySelector('#author');
+    const publishDate = document.querySelector('#publish-date');
+    const content = document.querySelector('#content');
+    const image = document.querySelector('#image');
+    const output = document.querySelector('#output');
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const formData = new FormData();
+        formData.append('title', title.value);
+        formData.append('author', author.value);
+        formData.append('publish-date', publishDate.value);
+        formData.append('content', content.value);
+        formData.append('image', image.files[0]);
+
+        fetch('/submit', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            output.innerHTML = `
+                <div class='blog-info'>
+                    <p><span>Title:</span> ${title.value}</p>
+                    <p><span>Author:</span> ${author.value}</p>
+                    <p><span>Publish Date:</span> ${publishDate.value}</p>
+                </div>
+                <h2>Your Blog</h2>
+                <p>${content.value}</p>
+                <img src="${data}" alt="Blog Image">
+            `;
+        })
+        .catch(error => console.error(error));
+    });
+</script>
+
+</body>
+</html>
